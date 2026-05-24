@@ -56,6 +56,11 @@ export default function HeroSection() {
         loop
         playsInline
         preload="auto"
+        // @ts-expect-error: fetchPriority is a valid hint in modern browsers
+        fetchpriority="high"
+        crossOrigin="anonymous"
+        disablePictureInPicture
+        disableRemotePlayback
       />
 
       {/* ── LETTERBOX BARS ── */}
@@ -143,7 +148,7 @@ export default function HeroSection() {
           </span>
           <span className="block overflow-hidden">
             <span
-              className="line-up block font-light italic opacity-55 text-[0.42em] tracking-[0.12em] mt-[0.08em]"
+              className="line-up block font-light italic text-brand-white text-[0.42em] tracking-[0.12em] mt-[0.08em]"
               style={delay(0.56)}
             >
               Nothing Moves.
