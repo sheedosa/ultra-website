@@ -53,11 +53,11 @@ html, body {
   height: 0;
   animation: letterboxIn 1.2s var(--ease-bars) forwards;
 }
-.letterbox-bar[data-mobile="true"] {
-  animation-name: letterboxInMobile;
+@media (max-width: 768px) {
+  .letterbox-bar { animation-name: letterboxInMobile; }
 }
-@keyframes letterboxIn        { to { height: 5vh; } }
-@keyframes letterboxInMobile  { to { height: 3vh; } }
+@keyframes letterboxIn       { to { height: 5vh; } }
+@keyframes letterboxInMobile { to { height: 3vh; } }
 
 /* Fade + translate up — entrance for content blocks */
 .fade-up {
@@ -100,7 +100,9 @@ html, body {
     transform: none !important;
   }
   .letterbox-bar              { height: 5vh; }
-  .letterbox-bar[data-mobile="true"] { height: 3vh; }
+  @media (max-width: 768px) {
+    .letterbox-bar { height: 3vh; }
+  }
   .progress-fill              { width: 100%; }
   .shot-fill                  { height: 100%; }
   .grain                      { animation: none !important; }

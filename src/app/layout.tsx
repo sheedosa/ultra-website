@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow, Barlow_Condensed } from "next/font/google";
+import { Barlow, Barlow_Condensed, Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 
 const barlow = Barlow({
@@ -14,6 +14,13 @@ const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
   weight: ["300", "400", "600", "700", "900"],
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const arabic = Noto_Sans_Arabic({
+  variable: "--font-arabic",
+  subsets: ["arabic"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -41,7 +48,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${barlow.variable} ${barlowCondensed.variable}`}>
+    <html
+      lang="en"
+      className={`${barlow.variable} ${barlowCondensed.variable} ${arabic.variable}`}
+    >
       <body className="bg-brand-black text-brand-white antialiased">
         {/* React 19 hoists these into <head> automatically (deduped). */}
         {/* Warm the TCP/TLS connection to CloudFront */}

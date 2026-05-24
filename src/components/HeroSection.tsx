@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const VIDEO_DESKTOP =
   "https://d8j0ntlcm91z4.cloudfront.net/user_3CZmSrapB7IYHyQar1KNZhNGQ6X/hf_20260524_152700_cdbbb61c-ac84-4ce2-acf5-185385dc1ed0.mp4";
@@ -26,19 +25,32 @@ const delay = (s: number) =>
   ({ "--delay": `${s}s` } as React.CSSProperties);
 
 export default function HeroSection() {
-  const isMobile = useMediaQuery("(max-width: 768px)");
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [, setPlayFailed] = useState(false);
+  // Hold the video src until we've resolved the viewport on the client.
+  // SSR renders <video> with no src so mobile never downloads the desktop
+  // file; the matching `<link rel="preload" as="video" media="...">` in
+  // <head> has already started fetching the right one by the time React
+  // assigns the src here.
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
-  // Attempt autoplay; fall back gracefully if blocked
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 768px)");
+    const sync = () => {
+      setVideoSrc(mql.matches ? VIDEO_MOBILE : VIDEO_DESKTOP);
+    };
+    sync();
+    mql.addEventListener("change", sync);
+    return () => mql.removeEventListener("change", sync);
+  }, []);
+
+  // Attempt autoplay as soon as a src is assigned; fall back gracefully if blocked.
   useEffect(() => {
     const v = videoRef.current;
-    if (!v) return;
+    if (!v || !videoSrc) return;
+    v.load();
     const p = v.play();
-    if (p && typeof p.catch === "function") {
-      p.catch(() => setPlayFailed(true));
-    }
-  }, [isMobile]);
+    if (p && typeof p.catch === "function") p.catch(() => {});
+  }, [videoSrc]);
 
   return (
     <section
@@ -48,9 +60,8 @@ export default function HeroSection() {
       {/* ── VIDEO BACKGROUND ── */}
       <video
         ref={videoRef}
-        key={isMobile ? "m" : "d"}
         className="absolute inset-0 w-full h-full object-cover"
-        src={isMobile ? VIDEO_MOBILE : VIDEO_DESKTOP}
+        src={videoSrc ?? undefined}
         autoPlay
         muted
         loop
@@ -63,15 +74,9 @@ export default function HeroSection() {
         disableRemotePlayback
       />
 
-      {/* ── LETTERBOX BARS ── */}
-      <div
-        className="letterbox-bar absolute top-0 left-0 right-0 z-[2] bg-brand-black"
-        data-mobile={isMobile ? "true" : "false"}
-      />
-      <div
-        className="letterbox-bar letterbox-bar--bottom absolute bottom-0 left-0 right-0 z-[2] bg-brand-black"
-        data-mobile={isMobile ? "true" : "false"}
-      />
+      {/* ── LETTERBOX BARS (height handled in CSS via media query) ── */}
+      <div className="letterbox-bar absolute top-0 left-0 right-0 z-[2] bg-brand-black" />
+      <div className="letterbox-bar absolute bottom-0 left-0 right-0 z-[2] bg-brand-black" />
 
       {/* ── VIGNETTE OVERLAY ── */}
       <div
@@ -98,10 +103,14 @@ export default function HeroSection() {
         className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 py-5 md:px-12 md:py-7"
       >
         <a href="#hero" className="flex flex-col gap-[2px] no-underline">
-          <span className="font-[var(--font-barlow-condensed)] text-[clamp(12px,1.3vw,15px)] font-bold uppercase tracking-[0.22em] opacity-90">
+          <span className="font-[var(--font-barlow-condensed)] text-[clamp(12px,1.3vw,15px)] font-bold uppercase tracking-[0.22em] text-brand-white">
             Enjazat Albaina
           </span>
-          <span className="text-[clamp(10px,1vw,12px)] font-light tracking-[0.1em] opacity-40">
+          <span
+            dir="rtl"
+            lang="ar"
+            className="font-[var(--font-arabic)] text-[clamp(11px,1.05vw,13px)] font-normal text-brand-white/70"
+          >
             إنجازات البيئة
           </span>
         </a>
@@ -136,7 +145,7 @@ export default function HeroSection() {
           style={delay(0.2)}
         >
           <span className="block w-9 h-px bg-brand-white opacity-30" />
-          <span className="font-[var(--font-barlow-condensed)] text-[clamp(9px,0.85vw,11px)] uppercase tracking-[0.42em] opacity-50">
+          <span className="font-[var(--font-barlow-condensed)] text-[clamp(9px,0.85vw,11px)] uppercase tracking-[0.42em] text-brand-white">
             C2TE Tile Adhesive System
           </span>
         </div>
@@ -158,7 +167,7 @@ export default function HeroSection() {
 
         {/* Sub copy */}
         <div className="fade-up mt-[clamp(16px,2.5vh,28px)] max-w-[480px]" style={delay(0.78)}>
-          <p className="font-[var(--font-barlow)] font-light text-[clamp(12px,1.1vw,14px)] tracking-[0.06em] leading-[1.7] opacity-55">
+          <p className="font-[var(--font-barlow)] font-normal text-[clamp(13px,1.15vw,15px)] tracking-[0.03em] leading-[1.65] text-brand-white">
             Advanced polymer-modified tile adhesives engineered for total bond strength — from standard ceramic to large-format stone.
           </p>
         </div>
