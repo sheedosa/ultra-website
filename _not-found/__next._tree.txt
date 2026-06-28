@@ -1,0 +1,4 @@
+:HL["/ultra-website/_next/static/chunks/0m3xrvtb.0x~c.css","style"]
+:HL["https://d8j0ntlcm91z4.cloudfront.net/user_3CZmSrapB7IYHyQar1KNZhNGQ6X/hf_20260524_152700_cdbbb61c-ac84-4ce2-acf5-185385dc1ed0.mp4","video",{"crossOrigin":"anonymous","type":"video/mp4","fetchPriority":"high","media":"(min-width: 769px)"}]
+:HL["https://d8j0ntlcm91z4.cloudfront.net/user_3CZmSrapB7IYHyQar1KNZhNGQ6X/hf_20260524_151817_beeadbea-1731-44bd-912e-3c5a45f14104.mp4","video",{"crossOrigin":"anonymous","type":"video/mp4","fetchPriority":"high","media":"(max-width: 768px)"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"MwA6sHlmUbDJSGTh1m4kA"}
