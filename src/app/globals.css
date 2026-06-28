@@ -26,6 +26,21 @@ html, body {
   overflow-x: hidden;
 }
 
+/* Font-family utilities.
+   Tailwind v4 won't generate `font-[var(--font-…)]` arbitrary classes
+   (a CSS var needs a `family-name:` hint it can't infer), so the custom
+   fonts never applied. These explicit classes reference the next/font
+   CSS variables directly, which resolve reliably. */
+.font-display {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', system-ui, sans-serif;
+}
+.font-body {
+  font-family: var(--font-barlow), 'Barlow', system-ui, sans-serif;
+}
+.font-arabic {
+  font-family: var(--font-arabic), 'Noto Sans Arabic', system-ui, sans-serif;
+}
+
 /* Film grain — animated 12fps step */
 .grain {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");

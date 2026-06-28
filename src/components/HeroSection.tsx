@@ -67,8 +67,6 @@ export default function HeroSection() {
         loop
         playsInline
         preload="auto"
-        // @ts-expect-error: fetchPriority is a valid hint in modern browsers
-        fetchpriority="high"
         crossOrigin="anonymous"
         disablePictureInPicture
         disableRemotePlayback
@@ -103,13 +101,13 @@ export default function HeroSection() {
         className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-6 py-5 md:px-12 md:py-7"
       >
         <a href="#hero" className="flex flex-col gap-[2px] no-underline">
-          <span className="font-[var(--font-barlow-condensed)] text-[clamp(12px,1.3vw,15px)] font-bold uppercase tracking-[0.22em] text-brand-white">
+          <span className="font-display text-[clamp(12px,1.3vw,15px)] font-bold uppercase tracking-[0.22em] text-brand-white">
             Enjazat Albaina
           </span>
           <span
             dir="rtl"
             lang="ar"
-            className="font-[var(--font-arabic)] text-[clamp(11px,1.05vw,13px)] font-normal text-brand-white/70"
+            className="font-arabic text-[clamp(11px,1.05vw,13px)] font-normal text-brand-white/70"
           >
             إنجازات البيئة
           </span>
@@ -120,7 +118,7 @@ export default function HeroSection() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="font-[var(--font-barlow-condensed)] text-[clamp(10px,1vw,12px)] uppercase tracking-[0.24em] opacity-45 hover:opacity-100 transition-opacity duration-300"
+                className="font-display text-[clamp(10px,1vw,12px)] uppercase tracking-[0.24em] opacity-45 hover:opacity-100 transition-opacity duration-300"
               >
                 {l.label}
               </a>
@@ -129,7 +127,7 @@ export default function HeroSection() {
           <li>
             <a
               href="#contact"
-              className="font-[var(--font-barlow-condensed)] text-[clamp(10px,1vw,12px)] uppercase tracking-[0.24em] opacity-90 hover:opacity-100 border border-brand-white/25 hover:border-brand-white/45 hover:bg-brand-white/10 px-[18px] py-2 transition-all duration-300"
+              className="font-display text-[clamp(10px,1vw,12px)] uppercase tracking-[0.24em] opacity-90 hover:opacity-100 border border-brand-white/25 hover:border-brand-white/45 hover:bg-brand-white/10 px-[18px] py-2 transition-all duration-300"
             >
               Contact Us
             </a>
@@ -145,13 +143,13 @@ export default function HeroSection() {
           style={delay(0.2)}
         >
           <span className="block w-9 h-px bg-brand-white opacity-30" />
-          <span className="font-[var(--font-barlow-condensed)] text-[clamp(9px,0.85vw,11px)] uppercase tracking-[0.42em] text-brand-white">
+          <span className="font-display text-[clamp(9px,0.85vw,11px)] uppercase tracking-[0.42em] text-brand-white">
             C2TE Tile Adhesive System
           </span>
         </div>
 
         {/* Headline */}
-        <h1 className="font-[var(--font-barlow-condensed)] font-black uppercase leading-[0.86] tracking-[-0.015em] text-[clamp(72px,14vw,190px)]">
+        <h1 className="font-display font-black uppercase leading-[0.86] tracking-[-0.015em] text-[clamp(72px,14vw,190px)]">
           <span className="block overflow-hidden">
             <span className="line-up block" style={delay(0.42)}>Ultra</span>
           </span>
@@ -167,7 +165,7 @@ export default function HeroSection() {
 
         {/* Sub copy */}
         <div className="fade-up mt-[clamp(16px,2.5vh,28px)] max-w-[480px]" style={delay(0.78)}>
-          <p className="font-[var(--font-barlow)] font-normal text-[clamp(13px,1.15vw,15px)] tracking-[0.03em] leading-[1.65] text-brand-white">
+          <p className="font-body font-normal text-[clamp(13px,1.15vw,15px)] tracking-[0.03em] leading-[1.65] text-brand-white">
             Advanced polymer-modified tile adhesives engineered for total bond strength — from standard ceramic to large-format stone.
           </p>
         </div>
@@ -181,7 +179,7 @@ export default function HeroSection() {
             <a
               key={c.label}
               href="#products"
-              className="relative font-[var(--font-barlow-condensed)] text-[clamp(9px,0.8vw,11px)] font-semibold uppercase tracking-[0.24em] py-[5px] pl-[13px] pr-[13px] border border-brand-white/15 text-brand-white/55 hover:text-brand-white hover:border-brand-white/40 transition-all duration-300"
+              className="relative font-display text-[clamp(9px,0.8vw,11px)] font-semibold uppercase tracking-[0.24em] py-[5px] pl-[13px] pr-[13px] border border-brand-white/15 text-brand-white/55 hover:text-brand-white hover:border-brand-white/40 transition-all duration-300"
               style={{ boxShadow: `inset 3px 0 0 0 ${c.color}` }}
             >
               {c.label}
@@ -196,13 +194,13 @@ export default function HeroSection() {
         >
           <a
             href="#products"
-            className="font-[var(--font-barlow-condensed)] text-[clamp(10px,1vw,12px)] font-bold uppercase tracking-[0.28em] text-brand-black bg-brand-white hover:bg-transparent hover:text-brand-white hover:outline hover:outline-1 hover:outline-brand-white/60 px-[clamp(22px,2.5vw,36px)] py-[clamp(12px,1.6vh,16px)] no-underline transition-all duration-300"
+            className="font-display text-[clamp(10px,1vw,12px)] font-bold uppercase tracking-[0.28em] text-brand-black bg-brand-white hover:bg-transparent hover:text-brand-white hover:outline hover:outline-1 hover:outline-brand-white/60 px-[clamp(22px,2.5vw,36px)] py-[clamp(12px,1.6vh,16px)] no-underline transition-all duration-300"
           >
             Explore Products
           </a>
           <a
             href="#contact"
-            className="group font-[var(--font-barlow-condensed)] text-[clamp(10px,1vw,12px)] uppercase tracking-[0.28em] text-brand-white/45 hover:text-brand-white flex items-center gap-[10px] no-underline transition-colors duration-300"
+            className="group font-display text-[clamp(10px,1vw,12px)] uppercase tracking-[0.28em] text-brand-white/45 hover:text-brand-white flex items-center gap-[10px] no-underline transition-colors duration-300"
           >
             <span className="relative block h-px w-[22px] group-hover:w-[34px] transition-all duration-300 bg-current">
               <span className="absolute right-0 -top-[3px] border-y-[4px] border-l-[4px] border-y-transparent border-l-current" />
@@ -218,7 +216,7 @@ export default function HeroSection() {
         style={delay(1.4)}
       >
         <span
-          className="font-[var(--font-barlow-condensed)] text-[10px] tracking-[0.2em] opacity-45"
+          className="font-display text-[10px] tracking-[0.2em] opacity-45"
           style={{ writingMode: "vertical-rl" }}
         >
           ULTRA · 01
@@ -238,7 +236,7 @@ export default function HeroSection() {
         className="fade-up hidden md:flex absolute left-1/2 -translate-x-1/2 bottom-[clamp(14px,2.5vh,24px)] z-20 flex-col items-center gap-1.5"
         style={delay(1.8)}
       >
-        <span className="font-[var(--font-barlow-condensed)] text-[8px] uppercase tracking-[0.38em]">
+        <span className="font-display text-[8px] uppercase tracking-[0.38em]">
           Scroll
         </span>
         <span className="scroll-bounce block w-1 h-1 rounded-full bg-brand-white" />

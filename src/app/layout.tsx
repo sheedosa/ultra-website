@@ -66,8 +66,7 @@ export default function RootLayout({
           href={VIDEO_DESKTOP}
           media="(min-width: 769px)"
           crossOrigin="anonymous"
-          // @ts-expect-error: fetchPriority is a valid attribute in modern browsers
-          fetchpriority="high"
+          fetchPriority="high"
         />
         <link
           rel="preload"
@@ -76,8 +75,7 @@ export default function RootLayout({
           href={VIDEO_MOBILE}
           media="(max-width: 768px)"
           crossOrigin="anonymous"
-          // @ts-expect-error: fetchPriority is a valid attribute in modern browsers
-          fetchpriority="high"
+          fetchPriority="high"
         />
 
         {children}
