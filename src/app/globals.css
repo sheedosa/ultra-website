@@ -8,6 +8,7 @@
   --color-brand-green:  #2e7d32;
   --color-brand-purple: #7b1fa2;
   --color-brand-gold:   #c9a84c;
+  --color-brand-greige: #afabab;
 
   --font-barlow:           var(--font-barlow);
   --font-barlow-condensed: var(--font-barlow-condensed);
@@ -39,6 +40,14 @@ html, body {
 }
 .font-arabic {
   font-family: var(--font-arabic), 'Noto Sans Arabic', system-ui, sans-serif;
+}
+
+/* Keyboard focus indicator. currentColor adapts to the element's own text
+   colour, so the ring stays visible on both the light coming-soon page
+   (charcoal on greige) and the dark full site (off-white on black). */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 
 /* Film grain — animated 12fps step */
